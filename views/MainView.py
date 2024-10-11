@@ -20,7 +20,7 @@ class MainView:
         title : str is the ttile of the main window
         dimensions: is the dimensions of the main window, by default is 1200 width x 200 height (pixelds)
     """
-    def __init__(self, title : str, dimensions = "1200x200"):
+    def __init__(self, title, dimensions = "1200x200"):
         # Create the main window
         self.root = tk.Tk()
         self.root.title(title)

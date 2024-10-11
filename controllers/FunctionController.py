@@ -14,7 +14,7 @@ class FunctionController:
         n_order: is the order of the taylor polinomies to calculate it
         a: is the value of the a parameter to evalute in the taylor serie
     """
-    def __init__(self, function_str : str, independient_variable : str, n_order : int, a : int):
+    def __init__(self, function_str, independient_variable, n_order, a):
         self.function = Function(function_str, independient_variable)
         self.function.set_taylor_serie(n_order, a)
         self.polinomies_as_str = self.function.get_polinomies_as_str()

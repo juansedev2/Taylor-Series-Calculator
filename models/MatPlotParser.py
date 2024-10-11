@@ -14,7 +14,7 @@ class MatPlotParser:
         independient_variable_simbol: is the independient variable simbol that the function takes
         a_value: is the a value to will be evaluated to the taylor series
     """
-    def __init__(self, function, independient_variable_simbol, a_value : int):
+    def __init__(self, function, independient_variable_simbol, a_value):
         try: 
             # Convert simbolic expression (function) to numeric function
             self.f_lambdified = sp.lambdify(independient_variable_simbol, function, 'numpy')

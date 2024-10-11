@@ -20,7 +20,7 @@ class Function:
         independient_variable: str
             Is the independient variable in the function to indicate what's the variable to make the respective derivate
     """
-    def __init__(self, function_str : str, independient_variable: str = "x"):
+    def __init__(self, function_str, independient_variable = "x"):
         self.iv = sp.symbols(independient_variable) # The independient variable and get the simbolic expression
         self.function = self.tryParserFunction(function_str)
         self.derivatives = [] # A list ot save each derivates
@@ -48,7 +48,7 @@ class Function:
         except (sp.SympifyError, TypeError):
             raise
 
-    def evaluate_in_function(self, value: float | int):
+    def evaluate_in_function(self, value):
         try:
             value = self.function.subs(self.iv, value)
             numb_value = value.evalf()
@@ -70,7 +70,7 @@ class Function:
     """
     This method is to get each and store the n derivates of the poliomies
     """
-    def calculate_all_derivates(self, n : int):
+    def calculate_all_derivates(self, n):
         derivative_function = self.function # By starts, the first function to get the derivative, is the original function
         for i in range(n):
             derivative_function = sp.diff(derivative_function, self.iv)
@@ -84,7 +84,7 @@ class Function:
     """
     This method is to evalute an n derivate in a point(independiente variable value)
     """
-    def evaluate_n_derivate(self, n_derivate : int, value : int | float):
+    def evaluate_n_derivate(self, n_derivate, value):
         try:
             # First, get the derivate in the n position
             derivative = self.derivatives[n_derivate - 1] # By natural position on a list
@@ -96,7 +96,7 @@ class Function:
     """
     This method get the taylor series of the function
     """
-    def set_taylor_serie(self, n_order : int, a : float):
+    def set_taylor_serie(self, n_order, a):
 
         for i in range(1, n_order + 2):
             try:
