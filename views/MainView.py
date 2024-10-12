@@ -5,7 +5,7 @@ is the form of the taylor series
 """
 import tkinter as tk
 from tkinter import ttk
-from tkinter import messagebox
+from tkinter import messagebox, scrolledtext
 from controllers.FunctionController import FunctionController
 from models.MatPlotParser import MatPlotParser
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
@@ -120,7 +120,7 @@ class MainView:
 
             taylor_series_view = TaylorSeriesView()
             taylor_series_view.graph_original_function(original_function, x_vals, y_func)
-            taylor_series_view.graph_polinomies(polinomies, n_order, independient_variable_simbol, x_vals)
+            taylor_series_view.graph_polinomies(polinomies, n_order, independient_variable_simbol, x_vals, a_value)
             taylor_series_view.init_graph()
             taylor_series_view.graph_functions_table(polinomies)
 
@@ -154,18 +154,58 @@ class MainView:
         show_instructions is the method to display the messagebox that contains the instructions of the program
     """
     def show_instructions(self):
-        header_str = "Esta calculadora es un primera versión puede graficar las n series de taylor de una función, esto a través del formulario que verá en su pantalla,\n"
-        body1_str = "Para poder graficar funciones, debe serguir la nomenclatura siguiente:\n"
-        body2_str = "Funciones con potencias: x**n donde n es un número | functiones como euler usar E literal.\n"
-        body3_str = "Funciones racionales como raiz cuadrada en adelante, usar: x**(1/3), donde la conversión de la raiz debe ir en fraccionario y delimitado entre paréntesis.\n"
-        body4_str = "Todo escalar que multiplique a una variable, se debe escribir como: numero*variable -> 5*x por ejemplo.\n"
-        body5_str = "Para funciones trigonométricas: seno = sin, coseno = cos, tangente = tan, cosecante = cosc, etc.\n"
-        body5_str = "\nAnte cualquier novedad | pregunta | inquietud | reporte por favor contactarse con el administrador.\n"
-        final_str = header_str + body1_str + body2_str + body3_str + body4_str + body5_str + "\n"
-        messagebox.showinfo("Instrucciones", final_str)
+        instructions_window = tk.Toplevel()
+        instructions_window.title("Instrucciones")
+        instructions_window.geometry("800x500")
+        title = tk.Label(instructions_window, text = "Instrucciones de Uso", font = ("Helvetica", 18, "bold"))
+        title.pack(pady = 15)
+        # Text box with scroll to show the instructions
+        instructions_text = scrolledtext.ScrolledText(instructions_window, wrap = tk.WORD, width = 90, height=15, font = ("Helvetica", 16))
+        instructions_text.pack(padx=10, pady=10)
+        # Instrucciones as str
+        instructions = (
+            "1. Ingrese la función matemática en el campo correspondiente.\n\n"
+            "PARA FUNCIONES TRIGONOMÉTRICAS escribir el equivalente: (sen = sin, cos = cos, tan = tan, sec = sec, csc = csc, etc.)\n\n"
+            "2. Especifique el valor de n para calcular el polinomio de Taylor de grado n.\n\n"
+            "3. Ingrese el valor de 'a' en la serie de Taylor.\n\n"
+            "4. Presione el botón 'Calcular' para obtener los polinomios y graficarlos.\n\n"
+            "5. Las funciones racionales se pueden ingresar utilizando sqrt(x) para raíz cuadrada y x**(1/3) para raíz cúbica.\n\n"
+            "6. Las funciones exponenciales pueden ser usadas también con el símbolo ^, pero por comodidad se sugiere usar la notación **(valor potencia) de manera literal.\n\n"
+            "7. Asegúrese de que la función esté correctamente escrita para evitar errores en el cálculo.\n\n"
+            "9. Para cerrar la aplicación, use el botón 'Cerrar' o cierre la ventana principal.\n\n"
+            "10. Finalmente podrá notar que en toda serie calculada, habrá un polinomio cero, donde debe saber que este tan solo hace referencia a la función evaluada en el punto a, por lo que a partir del polinomio 1 es que obtiene los polinomios que usted quiere calcular\n\n"
+            "FIN"
+            
+        )
+        # Inser instructions in the text box and disable it to prevent edition
+        instructions_text.insert(tk.END, instructions)
+        instructions_text.config(state=tk.DISABLED)
+        # Button to close the window
+        close_button = tk.Button(instructions_window, text = "Cerrar", command = instructions_window.destroy, font=("Helvetica", 12))
+        close_button.pack(pady=10)
 
     """
         show_credits is the method to display the messagebox that contains the credits of the program
     """
     def show_credits(self):
-        messagebox.showinfo("Créditos", "Desarrollado por Juansedev2\nTODOS LOS DERECHOS RESERVADOS\nSe puede consultar y probar el programa pero no disponible para generar recursos económicos ni suplantación de autoría.\nAnte cualquier duda|reporte|sugerencia comunicarse con el administrador en el perfil de Github")
+        credits_window = tk.Toplevel()
+        credits_window.title("Créditos")
+        credits_window.geometry("800x400")
+        title = tk.Label(credits_window, text = "Desarrollado por", font = ("Helvetica", 16, "bold"))
+        title.pack(pady = 15)
+
+        # Texto de los créditos
+        credits_text = (
+            "Calculadora de Polinomios de Taylor\n\n"
+            "Desarrollada por: Juan Sebastian Arias - Juansedev2\n\n"
+            "TODOS LOS DERECHOS RESERVADOS\n\n"
+            "PROHIDO reproducción para fines económicos y sin reconocimiento intelectual\n\n"
+            "Contacto: https://github.com/juansedev2\n\n"
+            "Año: 2024"
+        )
+        # Label to show the credits
+        credits_label = tk.Label(credits_window, text = credits_text, font = ("Helvetica", 14), justify = "center")
+        credits_label.pack(padx = 15, pady = 15)
+        # BUtton to close the window
+        close_button = tk.Button(credits_window, text = "Cerrar", command = credits_window.destroy, font = ("Helvetica", 12))
+        close_button.pack(pady = 15)
