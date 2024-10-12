@@ -39,19 +39,24 @@ class TaylorSeriesView:
             independient_variable_simbol: is the symbol of the independient variable to get and graph as original
             x_vals: therea are the vals in the x dimension
     """
-    def graph_polinomies(self, polinomies_list, n_order, independient_variable_simbol, x_vals):
+    def graph_polinomies(self, polinomies_list, n_order, independient_variable_simbol, x_vals, a_value):
         colors = cm.viridis(np.linspace(0, 1, n_order))
-        # Graficar cada polinomio de Taylor
+        colores = ['yellow', 'blue', 'red', 'green', 'orange', 'purple', 'brwon', 'gray', 'aqua', '']
+        i = 0
+        # Graph each taylor polinomie
         for idx, polinomie in enumerate(polinomies_list, start = 0):
             
             y_polinomie = sp.lambdify(independient_variable_simbol, polinomie, 'numpy')(x_vals)
-            # Verificar y ajustar la forma de y_polinomio
+            # Verify and fix the form for the y_polinomie
             if np.isscalar(y_polinomie):
                 y_polinomie = np.full_like(x_vals, y_polinomie)
             elif y_polinomie.shape != x_vals.shape:
                 y_polinomie = np.array(y_polinomie).flatten()
             
-            self.ax.plot(x_vals, y_polinomie, label = f'Taylor n = {idx}', linestyle = '--', color = colors[idx-1])
+            self.ax.plot(x_vals, y_polinomie, label = f'Taylor n = {idx}', linestyle = "-", color = colores[i % len(colores)])
+            i = i +1
+        
+        plt.axvline(x = a_value, color='black', linestyle='--', label=f'Línea en a={a_value}', linewidth = 2)
 
     """
         init_graph initis the matplotlib graf window
