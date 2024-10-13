@@ -28,13 +28,18 @@ pip install tk
 
 ``
 pip install matplotlib
-
 ``
 
 #### Sympy
 
 ``
 pip install sympy
+``
+
+## Finally, only open a terminal in the root of this directory a run the follow command to use the program
+
+``
+python main.py
 ``
 
 *That's all and if you get an error, please, contact me :D*
