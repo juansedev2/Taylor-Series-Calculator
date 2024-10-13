@@ -74,6 +74,10 @@ class MainView:
             if not function or not n_order or not a_value:
                 messagebox.showwarning("Campos Vacíos", "Por favor, completa todos los campos.")
                 return
+            
+            if ("e" in function or "E" in function or "exp" in function) and a_value == "1":
+                messagebox.showwarning("Advertencia de cálculo", "Para la función exponencial, el valor de a debe ser mayor a 1")
+                return
     
             try:
                 n_order = int(n_order)
@@ -165,7 +169,7 @@ class MainView:
         # Instrucciones as str
         instructions = (
             "1. Ingrese la función matemática en el campo correspondiente.\n\n"
-            "PARA FUNCIONES TRIGONOMÉTRICAS escribir el equivalente: (sen = sin, cos = cos, tan = tan, sec = sec, csc = csc, etc.)\n\n"
+            "PARA FUNCIONES TRIGONOMÉTRICAS escribir el equivalente: (sen = sin, cos = cos, tan = tan, sec = sec, csc = csc, etc.) y también admitimos el literal pi como el número pi, o E o e o exp(x) como euler-exponencial\n\n"
             "2. Especifique el valor de n para calcular el polinomio de Taylor de grado n.\n\n"
             "3. Ingrese el valor de 'a' en la serie de Taylor.\n\n"
             "4. Presione el botón 'Calcular' para obtener los polinomios y graficarlos.\n\n"
