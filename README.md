@@ -14,4 +14,27 @@
 - Matplotlib
 - Sympy
 
+---
+
+### So please install that dependendencies
+
+#### Tkinter
+
+``
+pip install tk
+``
+
+#### Matplotlib
+
+``
+pip install matplotlib
+
+``
+
+#### Sympy
+
+``
+pip install sympy
+``
+
 *That's all and if you get an error, please, contact me :D*
