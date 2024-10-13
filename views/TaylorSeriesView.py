@@ -12,7 +12,7 @@ class TaylorSeriesView:
 
     def __init__(self):
         # Create the matplotlib figure
-        self.fig, self.ax = plt.subplots(figsize = (8, 6))
+        self.fig, self.ax = plt.subplots(figsize = (12, 10))
 
     """
         get_fig is the method to return the matplotlib figure
@@ -40,8 +40,8 @@ class TaylorSeriesView:
             x_vals: therea are the vals in the x dimension
     """
     def graph_polinomies(self, polinomies_list, n_order, independient_variable_simbol, x_vals, a_value):
-        colors = cm.viridis(np.linspace(0, 1, n_order))
-        colores = ['yellow', 'blue', 'red', 'green', 'orange', 'purple', 'brwon', 'gray', 'aqua', '']
+        #colors = cm.viridis(np.linspace(0, 1, n_order))
+        colors = ['yellow', 'blue', 'red', 'green', 'orange', 'purple', 'brwon', 'gray', 'aqua', '']
         i = 0
         # Graph each taylor polinomie
         for idx, polinomie in enumerate(polinomies_list, start = 0):
@@ -53,10 +53,10 @@ class TaylorSeriesView:
             elif y_polinomie.shape != x_vals.shape:
                 y_polinomie = np.array(y_polinomie).flatten()
             
-            self.ax.plot(x_vals, y_polinomie, label = f'Taylor n = {idx}', linestyle = "-", color = colores[i % len(colores)])
+            self.ax.plot(x_vals, y_polinomie, label = f'Taylor n = {idx}', linestyle = "-", color = colors[i % len(colors)])
             i = i +1
         
-        plt.axvline(x = a_value, color='black', linestyle='--', label=f'Línea en a={a_value}', linewidth = 2)
+        plt.axvline(x = a_value, color='black', linestyle='--', label=f'Línea en a={a_value}', linewidth=2)
 
     """
         init_graph initis the matplotlib graf window
@@ -84,15 +84,12 @@ class TaylorSeriesView:
                 colLabels=None,
                 cellLoc='left',
                 loc='upper right',
-                bbox=[1.05, 0.5, 0.4, 0.4]
+                bbox=[1.05, 0.5, 0.7, 0.7]
         )  # [x0, y0, width, height]
 
         table.auto_set_font_size(False)
-        table.set_fontsize(8)
+        table.set_fontsize(10)
         table.scale(1, 1.5)
 
-        table.auto_set_font_size(False)
-        table.set_fontsize(8)
-        table.scale(1, 1.5)
         # Adjunts layout to prevent curts
         plt.tight_layout()
