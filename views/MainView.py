@@ -104,7 +104,7 @@ class MainView:
             # Create a new window to display the results
             second_window = tk.Toplevel(self.root)
             second_window.title("Valores Recibidos")
-            second_window.geometry("1500x1000")
+            second_window.geometry("1600x1000")
 
             #Show the values
             mensaje = f"Función: {function}\nOrden n: {n_order}\nValor a: {a_value}"
@@ -129,7 +129,7 @@ class MainView:
             # Integrar la figura en Tkinter - integrate the figure of matplotlib with Tkinter
             canvas = FigureCanvasTkAgg(fig, master = second_window)
             canvas.draw()
-            canvas.get_tk_widget().pack(pady=10, padx=10, fill=tk.BOTH, expand=True)
+            canvas.get_tk_widget().pack(pady = 20, padx = 20, fill = tk.BOTH, expand = True)
 
         # Button to send the form
         submit_button = ttk.Button(self.root, text = "Enviar", command = display_taylor_results)
