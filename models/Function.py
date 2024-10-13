@@ -43,7 +43,7 @@ class Function:
 
     def tryParserFunction(self,function_as_str):
         try:
-            function_sympy = sp.sympify(function_as_str)
+            function_sympy = sp.sympify(function_as_str, locals={'e': sp.E, 'pi': sp.pi, 'sin': sp.sin, 'sen': sp.sin, 'cos': sp.cos, 'exp': sp.exp, 'sqrt': sp.sqrt})
             return function_sympy
         except (sp.SympifyError, TypeError):
             raise
